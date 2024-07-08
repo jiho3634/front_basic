@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js intro</title>
+    <script>
+        function variableConsole1() {
+            console.log("hello, world");
+            // var, let, const 중에 하나의 키워드를 사용
+            var a = 10;
+            var b = "10";
+            var c = 20;
+            console.log(a + b);
+            console.log(a + c);
+        }
+
+        function variableConsole2() {
+            // 배열 기호 []
+            // 자료형에 상관 없이 배열을 만들 수 있다.
+            // "" , '' 의 구분이 없는건가?
+            var arr = [10, "20", 30, '40'];
+
+            // 배열에 데이터 추가
+            arr.push(50);
+
+            for (var i = 0; i < arr.length; i++) {
+                console.log(arr[i]);
+            }
+            arr.forEach(a => console.log(a));
+            // 팝업창. 확인버튼 누르기 전까지는 이후 코드 실행X. 화면상에서도 조작 불가
+            alert("total : " + total);
+            // 기존 화면이 사라지고, 화면에 출력함.
+            document.write("total" + total);
+        }
+
+        function variableConsole3() {
+            // 함수명 옆에 인자를 넣을 수 있는 괄호 ()는 한 번만 사용해야한다. 
+            // variableConsole1() 또는 arr[2]() 둘 중 하나.
+            var arr = [10, 20, variableConsole1];
+            arr[2]();
+            var arr2 = [10, 20, function test() {console.log("hello world")}];
+            arr2[2]();
+        }
+
+        function varExample() {
+            // 재선언 O, 재할당 O
+            // 쓰지 말자.
+            var a = 10;
+            var a = 20;
+            a = 30;
+        }
+
+        function letExample() {
+            // 재선언 X, 재할당 O
+            let a = 10;
+            // let a = 20;
+            a = 20;
+        }
+
+        function constExample() {
+            // 재선언 X, 재할당 X
+            const a = 10;
+            // const a = 20;
+            // a = 30;
+        }
+
+        function changeTextById() {
+            document.getElementById("change1").innerHTML = "change1 변경완료";
+        }
+
+        function changeTextByClassName() {
+            let arr = document.getElementsByClassName("change2");
+            for (let i = 0; i < arr.length; i++) {
+                arr[i].style.fontSize = "20px";
+                arr[i].style.color = "red";
+                arr[i].innerHTML = "변경완료";
+            }
+        }
+
+        function changeTextByTagName() {
+            let array = document.getElementsByTagName("h3");
+            for (let i = 0; i < array.length; i++) {
+                const element = array[i];
+                element.style.fontSize = "20px";
+                element.style.color = "red";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h2>javascrip 변수와 출력</h2>
+    <button onclick="variableConsole1()">console에 변수 출력하기1</button>
+    <button onclick="variableConsole2()">console에 변수 출력하기2</button>
+    <button onclick="variableConsole3()">console에 변수 출력하기3</button>
+
+    <h2>javascrip 변수 선언 키워드</h2>
+    <button onclick="varExample()">var</button>
+    <button onclick="letExample()">let</button>
+    <button onclick="constExample()">const</button>
+    
+    <h2>tag선택, class선택, id선택</h2>
+    <button onclick="changeTextById()">id선택 후 change</button>
+    <p id = "change1">변경대상</p>
+
+    <button onclick="changeTextByClassName()">Class 선택 후 change</button>
+    <p class="change2">변경대상</p>
+    <p class="change2">변경대상</p>
+
+    <button onclick="changeTextByTagName()">Tag 선택 후 change</button>
+    <h3>변경 대상</h3>
+    <h3>변경 대상</h3>
+</body>
+
+</html>

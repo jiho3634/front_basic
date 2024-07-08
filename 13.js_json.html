@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 직렬화 및 역직렬화 실습</title>
+</head>
+
+<body>
+    <table border="1" style="border-collapse: collapse" margin: auto;>
+        <tr>
+            <th>name</th>
+            <th>age</th>
+            <th>score</th>
+        </tr>
+        <tr>
+            <td id="tableName"></td>
+            <td id="tableAge"></td>
+            <td id="tableScore"></td>
+        </tr>
+    </table>
+    <table border="1" style="border-collapse: collapse" margin: auto; id="table2">
+        <tr>
+            <th>name</th>
+            <th>age</th>
+            <th>score</th>
+        </tr>
+    </table>
+    <table border="1" style="border-collapse: collapse" margin: auto; id="table3">
+        <tr>
+            <th>name</th>
+            <th>age</th>
+            <th>score</th>
+        </tr>
+    </table>
+    <script>
+        // 단일객체
+        const jsonTxt1 = '{"name":"Alice","age":25,"score":85}';
+
+        // 객체배열
+        const jsonTxt2 = '[{"name":"Alice","age":25,"score":85},{"name":"Bob","age":28,"score":92},{"name":"Charlie","age":32,"score":88}]';
+
+        //json 역직렬화(파싱 parsing) : 프론터에서 json을 받아;
+        const jsonObj1 = JSON.parse(jsonTxt1);
+        document.getElementById("tableName").innerHTML = jsonObj1.name;
+        document.getElementById("tableAge").innerHTML = jsonObj1.age;
+        document.getElementById("tableScore").innerHTML = jsonObj1.score;
+
+        const jsonObjArr = JSON.parse(jsonTxt2);
+        jsonObjArr.forEach(element => {
+            document.getElementById("table2").innerHTML += `<tr><td>${element.name}</td><td>${element.age}</td><td>${element.score}</td></tr>`;
+        });
+
+        const jsonTxt3 = '[{"name":"Alice","age":25,"score":85},{"name":"Bob","age":28,"score":92},{"name":"Charlie","age":32,"score":88}]';
+        const jsonObj3 = JSON.parse(jsonTxt3);
+        const table3 = document.getElementById("table3");
+        jsonObj3.forEach(obj => {
+            const tr = document.createElement("tr");  // 새 행 생성
+            tr.innerHTML = `<td>${obj.name}</td><td>${obj.age}</td><td>${obj.score}</td>`; // 행에 셀 추가
+            table3.appendChild(tr);  // 테이블 바디에 행 추가
+
+
+        // 직렬화 : 객체 -> json (서버 -> 프론트)
+        // 실습을 할만한게 없다.
+        const jsonTxt4 = JSON.stringify(jsonObjArr);
+        console.log(jsonTxt4);
+        console.log(jsonObjArr);
+        });
+    </script>
+</body>
+
+</html>

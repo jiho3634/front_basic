@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js basic</title>
+    <script>
+        function showObject() {
+            let person = { name: "hong", age: 20, email: "hong@naver.com" };
+            // 객체 접근 방법 1
+            console.log("이름은 " + person.name + "이고, email은 " + person.email + "입니다.");
+            person.name = "kim"; // 객체 접근 후 변경
+
+            // 객체 접근 방법 2 : person['name']
+            console.log("이름은 " + person['name']);
+
+            //Object.keys : 객체의 키를 배열로 반환
+            let array = Object.keys(person);
+            for (let index = 0; index < array.length; index++) {
+                console.log(array[index]);
+            }
+            array.forEach(k => console.log(person[k]));
+        }
+
+        function makeObject() {
+            //방법1. 리터럴 방식으로 값 세팅
+
+            //방법2. 동적으로 키와 값을 추가
+            let myObject = {};
+            myObject.name = 'hong';
+            myObject.email = 'hong@naver.com';
+            myObject['password'] = "1234";
+            console.log(myObject);
+
+            // 위 객체의 value만 console로 출력
+            console.log(Object.keys(myObject));
+
+            //name(key) : hong(value), email(key) : hong@naver.com(value) 형식 출력
+            //백틱을 활용한 템플릿 리터럴
+            let mySt = "";
+            Object.keys(myObject).forEach(key => {
+                mySt += `${key}(key) : ${myObject[key]}(value) <br>`;
+            })
+            // document.getElementById("result").innerHTML = mySt; ?????????
+
+            // 단축 속성명 방식
+            const name = 'kim';
+            const age = 30;
+            const person1 = { name: name, age: age };
+
+            //단축 속성명 방식
+            //속성명을 변수명과 동일하게 사용할 때 간편하게 객체 생성하는 방식
+            const person2 = { name, age };
+
+            const obj1 = { key1: "value1" };
+            console.log(obj1);
+            // obj2라는 객체를 만들고, obj1이라는 속성명으로 값에 {key1: "value1"}이 들어감.
+            const obj2 = { obj1 };
+            console.log(obj2);
+
+            // 스프레드 문법
+            const obj3 = { a: 1, b: 2 };
+            //배열에서도 스프레드 문법 사용 가능
+            //스프레드 연산자 (...): 한 객체의 모든 열거 가능한 속성을 다른 객체로 얕은 복사.
+            const obj4 = { ...obj3, c: 3 };
+        }
+
+        function makeArr() {
+            let fruits = ['사과', '바나나', '오렌지'];
+            // 포도 추가
+            fruits.push('포도');
+            console.log(fruits);
+            // pop : 마지막요소 제거
+            fruits.pop();
+            console.log(fruits);
+
+            // 배열의 접근 [index]
+            console.log(fruits[1]);
+
+            // 배열 요소의 수정
+            fruits[1] = '망고';
+            console.log(fruits);
+
+            // for문 기본 예시
+            for (let index = 0; index < fruits.length; index++) {
+                const element = fruits[index];
+                console.log(fruits[index]);
+            }
+            // foreach
+            for (const f of fruits) {
+                console.log(f);
+            }
+            fruits.forEach(element => { console.log(element) });
+            fruits.forEach((a, b, c) => { console.log("a : " + a + " b : " + b + " c : " + c) });
+
+            // filter 메서드
+            const num = [1, 2, 3, 4, 5, 6];
+            //짝수인 요소만을 뽑아 새로운 배열 생성 후 출력
+            const filteredNum = num.filter(n => n % 2 == 0);
+            console.log(filteredNum);
+
+            // map 메서드
+            const squaredNum = num.filter(n => n % 2 == 0).map(n => n * n);
+            console.log(squaredNum);
+
+            // find 메서드
+            console.log(num.find(n => n % 2 == 0));
+
+            // 스프레드 문법 : 배열이나 객체의 얕은 복사
+            const add = [7, 8, 9];
+            const num2 = [...num, ...add];
+            console.log(num2);
+        }
+
+        function practice() {
+            let people = [{ name: "kim", age: 15 }, { name: "lee", age: 25 }, { name: "park", age: 35 }];
+            people = people.map(element => ({ ...element, email: "test@naver.com" }));
+            console.log(people);
+            let thirties = people.filter(p => p.age >= 30);
+            console.log(thirties);
+
+            // arr1에 있는 key 값이 arr2에 id로 있다면, 해당 arr2의 요소로 이루어진 새로운 객체를 생성
+            const arr1 = { 1: "name1", 2: "name2" };
+            const arr2 = [{ id: 1, name: "name1", email: "name1@naver.com" }, { id: 2, name: "name2", email: "name2@naver.com" }, { id: 3, name: "name3", email: "name3@naver.com" }]
+            const arr3 = Object.keys(arr1).map(a => {const p1 = arr2.find(b => b.id == a); return p1});
+            console.log(arr3);
+        }
+
+        function convertType() {
+            let numStr = "10";
+            let str = "hello";
+
+            // typeof : 변수의 타입 리턴
+            let num1 = Number(numStr);
+            console.log(typeof num1);
+            num1 = String(num1);
+            console.log(typeof num1);
+
+            // NaN (Not a Number) 발생
+            let num2 = Number(str);
+            console.log(typeof num2);
+
+            // ===(타입까지 비교)
+            // 타입은 다르지만 문자 자체는 같음
+            console.log(10 == '10');  // true;
+            // 타입이 다름
+            console.log(10 === '10'); // false;
+
+            // undefined, null의 비교
+            let output1;
+            let output2 = null;
+            console.log(typeof output1);
+            console.log(typeof output2);
+            console.log(output1 == output2);  // true;
+            console.log(output1 === output2); // false;
+        }
+    </script>
+</head>
+
+<body>
+    <h2>js객체</h2>
+    <button onclick="showObject()">객체 조회</button>
+    <button onclick="makeObject()">객체 생성</button>
+    <button onclick="makeArr()">배열 생성</button>
+    <button onclick="practice()">filter, map, find, 스프레드연습</button>
+    <button onclick="convertType()">형 변환</button>
+</body>
+
+</html>

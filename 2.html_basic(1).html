@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style></style>
+</head>
+<!-- <body style="background-color: red;"> -->
+<!-- <body background="images/오토바이.jpg"> -->
+
+<body>
+    <h2>글자 styleing 예제</h2>
+    <!-- 인라인 스타일링 -->
+    <p style="background-color: red;">1.배경색 변경</p>
+    <p style="color: blue;">2.글자색 변경</p>
+    <p style="font-size: 20px;">3.글자크기 변경</p>
+    <p style="background-color: blue; color:yellow; font-size: 25px; text-align: center;">4.복합 스타일링</p>
+
+    <h2>link와 이미지 삽입</h2>
+    <!-- _blank : 새탭으로 이동 -->
+    <div>
+        <a href="https://naver.com" target="_blank">네이버</a>
+    </div>
+
+    <div>
+        <a href="https://naver.com">
+            <!-- alt : 이미지가 깨졌을 때 대체문자열, 시작장애인용 reader 기에서 인식 -->
+            <img src="images/KakaoTalk_20240701_103323347.jpg" width="320px" height="360px"
+                style="border: 10px solid black;" alt="김지호">
+        </a>
+    </div>
+
+    <h2>리스트(ol-순서가 있는, ul-순서가 없는)</h2>
+    <ol style="list-style-type: armenian;">
+        <li>아이템A</li>
+        <li>아이템B</li>
+        <li>아이템C</li>
+    </ol>
+    <ul style="list-style-type: square;">
+        <li>아이템A</li>
+        <li>아이템B</li>
+        <li>아이템C</li>
+    </ul>
+
+    <h2>테이블 예제</h2>
+    <table border="1" style="border-collapse: collapse;">
+        <caption>테이블명</caption>
+        <thead>
+            <tr>
+                <th>컬럼1</th>
+                <th>컬럼2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>내용1</td>
+                <td>내용2</td>
+            </tr>
+            <tr>
+                <td>내용A</td>
+                <td>내용B</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <caption>post</caption>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>contents</th>
+                <th>author_email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>B</td>
+                <td>C</td>
+                <td>D</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

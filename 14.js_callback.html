@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js callback</title>
+</head>
+
+<body>
+    <h2>콜백함수</h2>
+    <button onclick="basicFunction()">일반함수 예제1</button><br>
+    <button onclick="callBackFunction1()">콜백함수 예제1</button><br>
+    <button onclick="callBackFunction2()">콜백함수 예제2</button><br>
+    <button onclick="callBackFunction3()">콜백함수 예제3</button><br>
+
+    <script>
+        function basicFunction() {
+            alert("hello world");
+        }
+
+        function callBackFunction1() {
+            //콜백함수를 userInput의 인자로 던지고, 실행은 userInput 안에서 따로 실행코드가 있다. 
+            userInput((name) => { alert(name + "님 안녕하세요") });
+        }
+
+        function callBackFunction2() {
+            const numbers = [1, 2, 3, 4, 5];
+
+            //callback 함수의 일종
+            numbers.forEach(number => {
+                console.log(number);
+            });
+
+            //동기.
+            alert("hello world");
+        }
+
+        function callBackFunction3() {
+            //setTimeout 함수는 대표적인 js의 비동기 함수 중 하나 (+콜백함수처럼)
+            //2초 뒤에 콜백함수 실행하라는 뜻
+            //비동기 함수넹.
+            setTimeout(() => console.log("hello world1"), 2000);
+            console.log("hello world2");
+            setTimeout(() => console.log("hello world3"), 2000);
+            console.log("hello world4");
+            setTimeout(() => console.log("hello world5"), 2000);
+            console.log("hello world6");
+        }
+
+        //callback이라는 이름은 아무렇게나 지어도 되겠지...?
+        function userInput(callback) {
+            const name = "hongildong";
+            //콜백함수 실행.
+            callback(name);
+        }
+    </script>
+
+</body>
+
+</html>

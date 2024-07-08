@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>callback 지옥</title>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+        // async 와 await는 한 세트로 비동기 안에서 동기로 코드 실행?
+        // async => ready? 다 준비될 때까지 기다리겠따. => 다음 코드로 진행해라? => 비동기
+        async function callbBackHell() {
+            //await : 다 받아올 때까지 기다려라 => 동기
+            const response1 = await $.ajax({
+                url: "https://jsonplaceholder.typicode.com/posts/1",
+                type: 'GET',
+                dataType: 'json',
+                success: function(a) {
+                    console.log('a = ' + a);
+                }, error: function() {
+
+                }
+            });
+            const response2 = await $.ajax({
+                url: "https://jsonplaceholder.typicode.com/posts/1",
+                type: 'GET',
+                dataType: 'json',
+                success: function(b) {
+                    console.log('b = ' + b);
+                }, error: function() {
+
+                }
+            });
+            const response3 = await $.ajax({
+                url: "https://jsonplaceholder.typicode.com/posts/1",
+                type: 'GET',
+                dataType: 'json',
+                success: function(c) {
+                    console.log('c = ' + c);
+                }, error: function() {
+
+                }
+            });
+        }
+        callbBackHell();
+        console.log('hello world');
+    </script>
+</body>
+
+</html>
+                    <!-- success: function (a) {
+                        console.log('a = ' + a);
+                        $.ajax({
+                            url: "https://jsonplaceholder.typicode.com/posts/1",
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function (b) {
+                                console.log('b = ' + b);
+                                $.ajax({
+                                    url: "https://jsonplaceholder.typicode.com/posts/1",
+                                    type: 'GET',
+                                    dataType: 'json',
+                                    success: function (c) {
+                                        console.log('c = ' + c);
+                                    },
+                                    error: function () {
+                                    }
+                                })
+                            },
+                            error: function () {
+                            }
+                        })
+                    },
+                    error: function () {
+                    } -->
